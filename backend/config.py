@@ -33,12 +33,15 @@ class Config:
     JWT_ALGORITHM = "HS256"
 
     # CORS Configuration
-    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:5000").split(",")
-
+    _cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5000,http://localhost:3000")
+    CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",")]
+    
     # Socket.IO Configuration
     SOCKETIO_CORS_ALLOWED_ORIGINS = CORS_ORIGINS
     SOCKETIO_MESSAGE_QUEUE = None
     SOCKETIO_ASYNC_MODE = "eventlet"
+    SOCKETIO_ENGINEIO_LOGGER = False
+    SOCKETIO_LOGGER = False
 
     # Application
     JSON_SORT_KEYS = False

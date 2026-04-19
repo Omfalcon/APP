@@ -10,6 +10,8 @@ def register_socketio_events(socketio):
     """
     from .chat import register_chat_events
     from .webrtc import register_webrtc_events
+    from .global_chat import register_global_chat_events
 
     register_chat_events(socketio)
     register_webrtc_events(socketio)
+    register_global_chat_events(socketio)
