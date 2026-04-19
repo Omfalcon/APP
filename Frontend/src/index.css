@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border;
+}
+
+html,
+body {
+  @apply w-full h-full m-0 p-0 bg-slate-50;
+}
+
+#root {
+  @apply w-full h-full;
+}
+
+/* Custom animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 rounded hover:bg-slate-500 transition;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  @apply hidden;
+}
+
+/* Chat bubble styles - Modern */
+.message-bubble {
+  @apply max-w-xs px-4 py-2 rounded-2xl break-words text-sm shadow-md;
+}
+
+.message-sent {
+  @apply bg-gradient-to-r from-primary to-primary-dark text-white rounded-br-none;
+}
+
+.message-received {
+  @apply bg-white text-slate-900 rounded-bl-none border border-slate-200;
+}
+
+/* Input focus effect */
+input:focus {
+  @apply outline-none shadow-lg;
+}
+
+/* Button hover effects */
+button {
+  @apply transition-all duration-200;
+}
+
+button:not(:disabled):hover {
+  @apply transform hover:scale-105;
+}
+
+button:active:not(:disabled) {
+  @apply transform scale-95;
+}
+
+/* Modern card shadows */
+.card-shadow {
+  @apply shadow-lg hover:shadow-xl transition-shadow;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+/* Online indicator pulse */
+.online-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Better link styling */
+a {
+  @apply text-primary hover:text-primary-dark underline decoration-2 decoration-primary;
+}
+
+/* Form inputs */
+input, textarea, select {
+  @apply bg-white text-slate-900 placeholder-slate-400;
+}
+
+input:disabled, textarea:disabled, select:disabled {
+  @apply bg-slate-100 cursor-not-allowed;
+}
+
+/* Placeholder styling */
+::placeholder {
+  @apply text-slate-400 opacity-100;
+}
+
+/* Focus ring for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
