@@ -12,11 +12,11 @@ const isLocalhost = Boolean(
 // Base URLs
 export const API_BASE = isLocalhost 
   ? 'http://localhost:5000' 
-  : 'https://your-backend-url.com'; // Change this for deployment
+  : 'https://deployment.onthewifi.com'; // Change this for deployment
 
 export const SOCKET_URL = isLocalhost 
   ? 'http://localhost:5000' 
-  : 'https://your-backend-url.com'; // Change this for deployment
+  : 'https://deployment.onthewifi.com'; // Change this for deployment
 
 /**
  * Helper to construct a full API URL
