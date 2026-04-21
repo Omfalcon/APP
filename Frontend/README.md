@@ -31,12 +31,6 @@ npm install
 Create `.env.local` in the frontend directory:
 
 ```bash
-# Backend API URL
-VITE_BACKEND_URL=http://localhost:5000
-
-# Socket.IO Server URL
-VITE_SOCKET_URL=http://localhost:5000
-
 # Environment
 VITE_ENV=development
 ```
@@ -156,8 +150,6 @@ cd backend
 
 Update `frontend/.env.production` (create new file):
 ```env
-VITE_BACKEND_URL=https://your-backend-url.com
-VITE_SOCKET_URL=https://your-backend-url.com
 VITE_ENV=production
 ```
 
@@ -184,14 +176,7 @@ Follow prompts and configure:
 3. Set Environment Variables in Vercel settings
 4. Vercel auto-deploys on push
 
-### Step 4: Configure Vercel Environment Variables
-
-In Vercel Dashboard → Project Settings → Environment Variables:
-
-```
-VITE_BACKEND_URL = https://your-backend-url.com
-VITE_SOCKET_URL = https://your-backend-url.com
-```
+Configure backend settings if necessary in `src/config/api.js`.
 
 ## 🔍 Troubleshooting
 
@@ -211,8 +196,8 @@ CORS_ORIGINS=http://localhost:3000,https://your-app.vercel.app
 
 **Solution:** Verify Socket.IO URL and ensure backend is running
 ```javascript
-// src/utils/constants.js
-export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
+// src/config/api.js
+export const SOCKET_URL = ...;
 ```
 
 ### 401 Unauthorized on Protected Routes
