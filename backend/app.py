@@ -5,6 +5,7 @@ This module creates and configures the Flask application instance,
 sets up all extensions, and initializes the application for both
 development and production use.
 """
+#checking
 
 import logging
 import logging.config
