@@ -49,13 +49,13 @@ SOCKETIO_LOGGER = False
 ```env
 # BEFORE:
 # CORS
-CORS_ORIGINS=http://localhost:3000,http://localhost:5000,http://localhost:5001,http://127.0.0.1:5000,http://127.0.0.1:5001
+CORS_ORIGINS=http://localhost:3000,http://localhost:5000,http://localhost:5000,http://127.0.0.1:5000,http://127.0.0.1:5000
 
 # AFTER:
 # CORS - Include localhost for development AND your Vercel domain for production
 # When deployed, update the VERCEL_DOMAIN value to your actual Vercel frontend URL
 # Example: https://your-app.vercel.app
-CORS_ORIGINS=http://localhost:3000,http://localhost:5000,http://localhost:5001,http://127.0.0.1:3000,http://127.0.0.1:5000,http://127.0.0.1:5001,https://your-app.vercel.app
+CORS_ORIGINS=http://localhost:3000,http://localhost:5000,http://localhost:5000,http://127.0.0.1:3000,http://127.0.0.1:5000,http://127.0.0.1:5000,https://your-app.vercel.app
 ```
 
 **Why:**
@@ -195,15 +195,15 @@ cd backend
 python run.py
 
 # 2. Test CORS
-curl -X GET http://localhost:5001/health
+curl -X GET http://localhost:5000/health
 
 # 3. Test signup
-curl -X POST http://localhost:5001/api/auth/signup \
+curl -X POST http://localhost:5000/api/auth/signup \
   -H "Content-Type: application/json" \
   -d '{"username":"test","password":"test123"}'
 
 # 4. Test protected endpoint (replace TOKEN)
-curl -X GET http://localhost:5001/api/auth/me \
+curl -X GET http://localhost:5000/api/auth/me \
   -H "Authorization: Bearer TOKEN"
 
 # 5. Test Socket.IO (use frontend)

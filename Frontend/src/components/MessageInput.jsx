@@ -34,8 +34,8 @@ export default function MessageInput({
     isGlobalChat && !isConnected
       ? 'Server disconnected. Try again when connection is restored.'
       : !selectedUser
-      ? 'Select a user or global chat first'
-      : '';
+        ? 'Select a user or global chat first'
+        : '';
 
   return (
     <div className="bg-white border-t border-slate-200 px-6 py-4 shadow-lg">

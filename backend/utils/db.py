@@ -101,6 +101,14 @@ class MongoDBConnection:
 
             # Messages collection indexes
             messages = db["messages"]
+            
+            # CLEANUP: Drop legacy unique index if it exists (from previous conversation-model experiments)
+            try:
+                messages.drop_index("participants_1")
+                logger.info("Dropped legacy 'participants_1' index")
+            except Exception:
+                pass # Index doesn't exist, which is fine
+                
             messages.create_index("sender")
             messages.create_index("receiver")
             messages.create_index("timestamp")

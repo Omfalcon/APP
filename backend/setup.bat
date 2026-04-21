@@ -87,7 +87,7 @@ if exist ".env" (
     echo Please create .env file with:
     echo   MONGO_URI=your_mongodb_connection_string
     echo   JWT_SECRET_KEY=your_secret_key
-    echo   PORT=5001
+    echo   PORT=5000
 )
 
 REM Test MongoDB connection
@@ -125,7 +125,7 @@ echo   2. Start the server:
 echo      python run.py
 echo.
 echo   3. Open in browser:
-echo      http://localhost:5001/
+echo      http://localhost:5000/
 echo.
 echo   4. Read README.md for more details
 echo.

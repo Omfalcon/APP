@@ -123,17 +123,15 @@ export default function ChatWindow({
                 className={`flex w-full ${isSent ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`flex items-end gap-2 max-w-xs lg:max-w-md ${
-                    isSent ? 'flex-row-reverse' : 'flex-row'
-                  }`}
+                  className={`flex items-end gap-2 max-w-xs lg:max-w-md ${isSent ? 'flex-row-reverse' : 'flex-row'
+                    }`}
                 >
                   {/* Avatar */}
                   <div
-                    className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm text-white ${
-                      isSent
+                    className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm text-white ${isSent
                         ? 'bg-gradient-to-br from-primary to-primary-dark'
                         : 'bg-slate-400'
-                    }`}
+                      }`}
                   >
                     {isSent
                       ? currentUsername?.charAt(0).toUpperCase()
@@ -151,20 +149,18 @@ export default function ChatWindow({
 
                     {/* Message Content */}
                     <div
-                      className={`rounded-2xl px-4 py-2 break-words shadow-md ${
-                        isSent
+                      className={`rounded-2xl px-4 py-2 break-words shadow-md ${isSent
                           ? 'bg-gradient-to-r from-primary to-primary-dark text-white rounded-br-none'
                           : 'bg-white text-slate-900 border border-slate-200 rounded-bl-none'
-                      }`}
+                        }`}
                     >
                       <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                     </div>
 
                     {/* Timestamp */}
                     <p
-                      className={`text-xs mt-1 px-2 ${
-                        isSent ? 'text-slate-500' : 'text-slate-500'
-                      }`}
+                      className={`text-xs mt-1 px-2 ${isSent ? 'text-slate-500' : 'text-slate-500'
+                        }`}
                     >
                       {timestamp}
                     </p>

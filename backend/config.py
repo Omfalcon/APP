@@ -39,7 +39,7 @@ class Config:
     # Socket.IO Configuration
     SOCKETIO_CORS_ALLOWED_ORIGINS = CORS_ORIGINS
     SOCKETIO_MESSAGE_QUEUE = None
-    SOCKETIO_ASYNC_MODE = "eventlet"
+    SOCKETIO_ASYNC_MODE = "gevent"
     SOCKETIO_ENGINEIO_LOGGER = False
     SOCKETIO_LOGGER = False
 

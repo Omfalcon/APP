@@ -26,11 +26,11 @@ venv\Scripts\activate           # Windows
 python run.py
 ```
 
-Server runs at: **http://localhost:5001**
+Server runs at: **http://localhost:5000**
 
 ### 3. Access Frontend
 
-Open **http://localhost:5001** in browser
+Open **http://localhost:5000** in browser
 
 ### Verify Installations
 ```bash
@@ -108,8 +108,8 @@ MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/chat_app
 DATABASE_NAME=chat_app
 FLASK_ENV=development
 JWT_SECRET_KEY=your-secret-key
-PORT=5001
-CORS_ORIGINS=http://localhost:5001,http://127.0.0.1:5001
+PORT=5000
+CORS_ORIGINS=http://localhost:5000,http://127.0.0.1:5000
 ```
 
 ---
@@ -125,14 +125,14 @@ CORS_ORIGINS=http://localhost:5001,http://127.0.0.1:5001
 
 ### Signup
 ```bash
-curl -X POST http://localhost:5001/api/auth/signup \
+curl -X POST http://localhost:5000/api/auth/signup \
   -H "Content-Type: application/json" \
   -d '{"username": "alice", "password": "pass123"}'
 ```
 
 ### Login
 ```bash
-curl -X POST http://localhost:5001/api/auth/login \
+curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username": "alice", "password": "pass123"}'
 ```
@@ -143,7 +143,7 @@ curl -X POST http://localhost:5001/api/auth/login \
 
 Connect:
 ```javascript
-const socket = io('http://localhost:5001', {
+const socket = io('http://localhost:5000', {
   query: { token: jwtToken }
 });
 ```
@@ -170,9 +170,9 @@ const socket = io('http://localhost:5001', {
 
 ## 🧪 Testing
 
-1. Open **http://localhost:5001** in browser
+1. Open **http://localhost:5000** in browser
 2. Sign up as **User 1**
-3. Open **http://localhost:5001** in another tab (incognito)
+3. Open **http://localhost:5000** in another tab (incognito)
 4. Sign up as **User 2**
 5. Click user in sidebar to chat
 
@@ -217,7 +217,7 @@ python run.py
 Expected output:
 ```
 INFO:__main__:Starting Chat Application...
-* Running on http://0.0.0.0:5001
+* Running on http://0.0.0.0:5000
 ```
 
 ### With Custom Port
@@ -229,7 +229,7 @@ python run.py
 
 ### Health Check
 ```bash
-curl http://localhost:5001/health
+curl http://localhost:5000/health
 ```
 
 ---

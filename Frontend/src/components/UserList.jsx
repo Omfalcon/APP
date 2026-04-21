@@ -25,11 +25,10 @@ export default function UserList({ users, selectedUser, onSelectUser, currentUse
         {/* 🌍 Global Chat Button (NEW) */}
         <button
           onClick={() => onSelectUser('__GLOBAL_CHAT__')}
-          className={`w-full px-4 py-3 text-left rounded-lg transition duration-200 font-bold mb-3 flex items-center gap-3 ${
-            selectedUser === '__GLOBAL_CHAT__'
+          className={`w-full px-4 py-3 text-left rounded-lg transition duration-200 font-bold mb-3 flex items-center gap-3 ${selectedUser === '__GLOBAL_CHAT__'
               ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
               : 'hover:bg-slate-700 text-slate-100 bg-slate-700 bg-opacity-50'
-          }`}
+            }`}
         >
           <span className="text-xl">🌍</span>
           <span>Global Chat</span>
@@ -55,28 +54,26 @@ export default function UserList({ users, selectedUser, onSelectUser, currentUse
             {filteredUsers.map((user) => {
               const online = isUserOnline(user.username);
               const isSelected = selectedUser === user.username;
-              
+
               return (
                 <button
                   key={user.username}
                   onClick={() => onSelectUser(user.username)}
-                  className={`w-full px-4 py-3 text-left rounded-lg transition duration-200 group ${
-                    isSelected
+                  className={`w-full px-4 py-3 text-left rounded-lg transition duration-200 group ${isSelected
                       ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
                       : 'hover:bg-slate-700 text-slate-100'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 flex-1">
                       {/* Avatar */}
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
-                        isSelected 
-                          ? 'bg-white bg-opacity-20' 
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${isSelected
+                          ? 'bg-white bg-opacity-20'
                           : 'bg-slate-600 group-hover:bg-slate-500'
-                      }`}>
+                        }`}>
                         {user.username.charAt(0).toUpperCase()}
                       </div>
-                      
+
                       {/* User Info */}
                       <div className="flex-1 min-w-0">
                         <p className={`font-semibold text-sm truncate ${isSelected ? 'text-white' : 'text-slate-100'}`}>
@@ -87,7 +84,7 @@ export default function UserList({ users, selectedUser, onSelectUser, currentUse
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* Online Indicator */}
                     <div className={`w-3 h-3 rounded-full ${online ? 'bg-green-500' : 'bg-slate-600'}`} />
                   </div>

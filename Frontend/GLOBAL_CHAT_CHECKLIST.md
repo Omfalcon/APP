@@ -178,7 +178,7 @@ emit('send_message', {
 
 Before deploying to production:
 
-- [ ] Backend is running on stable port (5001)
+- [ ] Backend is running on stable port (5000)
 - [ ] Frontend can connect to backend (check CORS_ORIGINS in .env)
 - [ ] MongoDB connection is stable
 - [ ] All 5 components are updated with new code

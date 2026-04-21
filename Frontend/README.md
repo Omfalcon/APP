@@ -32,10 +32,10 @@ Create `.env.local` in the frontend directory:
 
 ```bash
 # Backend API URL
-VITE_BACKEND_URL=http://localhost:5001
+VITE_BACKEND_URL=http://localhost:5000
 
 # Socket.IO Server URL
-VITE_SOCKET_URL=http://localhost:5001
+VITE_SOCKET_URL=http://localhost:5000
 
 # Environment
 VITE_ENV=development
@@ -59,7 +59,7 @@ python -m pip install -r requirements.txt
 python run.py
 ```
 
-Backend will run on `http://localhost:5001`
+Backend will run on `http://localhost:5000`
 
 ## 🏗️ Project Structure
 

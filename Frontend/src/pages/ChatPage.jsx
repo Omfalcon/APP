@@ -123,8 +123,8 @@ export default function ChatPage() {
   const currentMessages = selectedUser === GLOBAL_CHAT_ID
     ? globalMessages
     : selectedUser
-    ? messages[[user?.username, selectedUser].sort().join('_')] || []
-    : [];
+      ? messages[[user?.username, selectedUser].sort().join('_')] || []
+      : [];
 
   // Get the currently displayed user (for UI purposes)
   const displayedUser = selectedUser === GLOBAL_CHAT_ID ? 'Global Chat' : selectedUser;
@@ -134,7 +134,7 @@ export default function ChatPage() {
     if (username === GLOBAL_CHAT_ID) {
       // SWITCHING TO GLOBAL CHAT
       console.log('Switching to global chat');
-      
+
       // Leave previous 1-on-1 room if any
       if (selectedUser && selectedUser !== GLOBAL_CHAT_ID) {
         // No special cleanup needed for 1-on-1
@@ -165,7 +165,7 @@ export default function ChatPage() {
       }
 
       setSelectedUser(username);
-      
+
       // Check if we already have history in ref
       const conversationKey = [user?.username, username].sort().join('_');
       if (messagesRef.current[conversationKey]) {
@@ -182,13 +182,13 @@ export default function ChatPage() {
           // Load only 20 most recent messages for performance (sliding window)
           const response = await messageAPI.getMessagesWith(username, 20);
           console.log(`✅ Fetched messages for ${username}:`, response.data);
-          
+
           const msgs = response.data.messages || [];
           console.log(`📨 Got ${msgs.length} messages`);
-          
+
           // Store in ref for session persistence
           messagesRef.current[conversationKey] = msgs;
-          
+
           // Update state
           setMessages((prev) => ({
             ...prev,
@@ -227,13 +227,13 @@ export default function ChatPage() {
         content,
         timestamp: new Date().toISOString(),
       };
-      
+
       // Update ref for persistence
       messagesRef.current[conversationKey] = [
         ...(messagesRef.current[conversationKey] || []),
         newMessage,
       ];
-      
+
       // Update UI state
       setMessages((prev) => ({
         ...prev,
