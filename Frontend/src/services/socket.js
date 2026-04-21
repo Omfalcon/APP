@@ -10,12 +10,14 @@ export const initializeSocket = (token) => {
   }
 
   socket = io(SOCKET_URL, {
-    auth: {
-      token,
-    },
+    // auth: {
+    //   token,
+    // },
     query: {
       token,
     },
+    transports: ["websocket"],
+    upgrade: false,
     reconnection: true,
     reconnectionDelay: 1000,
     reconnectionDelayMax: 5000,
