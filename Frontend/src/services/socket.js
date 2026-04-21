@@ -8,8 +8,9 @@ export const initializeSocket = (token) => {
   if (socket?.connected) {
     return socket;
   }
-
   socket = io(SOCKET_URL, {
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
     // auth: {
     //   token,
     // },
@@ -19,8 +20,7 @@ export const initializeSocket = (token) => {
     transports: ["websocket"],
     upgrade: false,
     reconnection: true,
-    reconnectionDelay: 1000,
-    reconnectionDelayMax: 5000,
+
     reconnectionAttempts: 5,
   });
 

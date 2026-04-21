@@ -31,6 +31,7 @@ export default function ChatPage() {
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [activeUsers, setActiveUsers] = useState([]);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const messagesRef = useRef({});
 
@@ -165,6 +166,7 @@ export default function ChatPage() {
       }
 
       setSelectedUser(username);
+      setIsSidebarVisible(false); // Mobile: Hide sidebar on selection
 
       // Check if we already have history in ref
       const conversationKey = [user?.username, username].sort().join('_');
@@ -244,41 +246,61 @@ export default function ChatPage() {
 
   if (loadingUsers) {
     return (
-      <div className="w-full h-screen flex items-center justify-center bg-gray-50">
+      <div className="w-full h-screen flex items-center justify-center bg-slate-900">
         <div className="text-center">
-          <div className="animate-spin text-4xl mb-4">⏳</div>
-          <p className="text-gray-600">Loading chat...</p>
+          <div className="animate-spin text-4xl mb-4 text-primary">⏳</div>
+          <p className="text-slate-400 font-medium">Syncing Chat Data...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-screen flex flex-col bg-slate-50">
-      {/* Modern Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-primary to-primary-dark text-white px-6 py-4 flex justify-between items-center shadow-xl border-b-4 border-primary">
+    <div className="w-full h-screen flex flex-col bg-slate-900 text-slate-100 selection:bg-primary/30">
+      {/* Header - Fixed Height */}
+      <header className="h-20 flex-shrink-0 glass border-b border-white/5 px-4 md:px-8 flex items-center justify-between z-50">
         <div className="flex items-center gap-3">
-          <div className="text-2xl">💬</div>
-          <div>
-            <h1 className="text-2xl font-bold">Chat</h1>
-            <p className="text-xs text-blue-100">👤 {user?.username}</p>
+          <button 
+            onClick={() => setIsSidebarVisible(true)}
+            className={`md:hidden p-2 -ml-2 hover:bg-white/5 rounded-xl transition-colors ${selectedUser && !isSidebarVisible ? 'visible' : 'invisible'}`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20">
+              <span className="text-xl">💬</span>
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-lg font-bold tracking-tight">Vocal Chat</h1>
+              <p className="text-[10px] text-primary-light font-bold uppercase tracking-widest">{user?.username}</p>
+            </div>
           </div>
         </div>
-        <button
-          onClick={() => {
-            logout();
-            navigate('/login');
-          }}
-          className="px-4 py-2 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg font-medium transition border border-white border-opacity-20 hover:border-opacity-40"
-        >
-          🚪 Logout
-        </button>
-      </div>
 
-      {/* Main Chat Area */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar */}
-        <div className="w-80 overflow-hidden border-r border-slate-200">
+        <div className="flex items-center gap-3">
+           <button
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+            className="px-4 py-2 bg-white/5 hover:bg-white/10 text-white/90 rounded-xl font-bold text-xs uppercase tracking-widest transition-all border border-white/5"
+          >
+            Sign Out
+          </button>
+        </div>
+      </header>
+
+      {/* Main Responsive Area */}
+      <div className="flex-1 flex overflow-hidden relative">
+        {/* Sidebar - Visible if (isSidebarVisible OR Desktop) */}
+        <aside 
+          className={`
+            absolute inset-0 z-40 bg-slate-900 md:relative md:flex md:w-[320px] 
+            transition-all duration-300 ease-in-out
+            ${isSidebarVisible ? 'translate-x-0 opacity-100' : '-translate-x-full md:translate-x-0 opacity-0 md:opacity-100'}
+            flex flex-col border-r border-white/5
+          `}
+        >
           <UserList
             users={users}
             selectedUser={selectedUser}
@@ -286,23 +308,47 @@ export default function ChatPage() {
             currentUsername={user?.username}
             activeUsers={activeUsers}
           />
-        </div>
+        </aside>
 
-        {/* Chat Window and Input */}
-        <div className="flex-1 flex flex-col">
-          <ChatWindow
-            messages={currentMessages}
-            selectedUser={displayedUser}
-            currentUsername={user?.username}
-            loadingHistory={loadingHistory}
-            isGlobalChat={selectedUser === GLOBAL_CHAT_ID}
-          />
-          <MessageInput
-            selectedUser={selectedUser}
-            onSendMessage={handleSendMessage}
-            isGlobalChat={selectedUser === GLOBAL_CHAT_ID}
-          />
-        </div>
+        {/* Chat Window - Visible if (!isSidebarVisible OR Desktop) */}
+        <main 
+          className={`
+            flex-1 flex flex-col min-w-0 bg-white/5 relative z-30 transition-all duration-300
+            ${!isSidebarVisible ? 'translate-x-0 opacity-100' : 'translate-x-full md:translate-x-0 opacity-0 md:opacity-100'}
+            md:static
+          `}
+        >
+          {selectedUser ? (
+            <>
+              <ChatWindow
+                messages={currentMessages}
+                selectedUser={displayedUser}
+                currentUsername={user?.username}
+                loadingHistory={loadingHistory}
+                isGlobalChat={selectedUser === GLOBAL_CHAT_ID}
+              />
+              <MessageInput
+                selectedUser={selectedUser}
+                onSendMessage={handleSendMessage}
+                isGlobalChat={selectedUser === GLOBAL_CHAT_ID}
+              />
+            </>
+          ) : (
+            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-900/50">
+               <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center text-4xl mb-6">
+                ✨
+              </div>
+              <h2 className="text-xl font-bold mb-2">Welcome, {user?.username}</h2>
+              <p className="text-slate-500 text-sm max-w-xs">Select a contact to start your premium messaging experience.</p>
+              <button 
+                onClick={() => setIsSidebarVisible(true)}
+                className="mt-6 md:hidden px-6 py-2 bg-primary rounded-xl font-bold text-sm"
+              >
+                Browse Contacts
+              </button>
+            </div>
+          )}
+        </main>
       </div>
     </div>
   );
