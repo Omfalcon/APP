@@ -223,7 +223,7 @@ INFO:__main__:Starting Chat Application...
 ### With Custom Port
 ```bash
 export PORT=8000    # macOS/Linux
-set PORT=8000       # Windows
+set PORT=8000        # Windows
 python run.py
 ```
 
